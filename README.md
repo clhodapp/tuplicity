@@ -24,3 +24,4 @@ Example:
 	
 	val x: String = tup._4
 
+For further examples see src/test/scala/TupleSuite.scala
