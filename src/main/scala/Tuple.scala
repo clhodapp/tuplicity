@@ -224,7 +224,7 @@ private[tuplicity] object TreeExtractor {
 				Apply(Select(arrayTree, newTermName("apply")), List(Literal(Constant(index))))
 			}
 
-			val runtimeForcingTypes = fakeMemberTypes.flatMap(_.baseClasses).map(_.asType.toType)
+			val runtimeForcingTypes = fakeMemberTypes.flatMap(_.baseClasses.tail).map(_.asType.toType)
 
 			def getAtRuntime(index: Int) = {
 				val typeOfSelected = layout(index)
