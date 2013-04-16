@@ -9,6 +9,7 @@ What Works:
  * Getting Tuple Members
  * Stringification
  * (Structural) Equality
+
 What Doesn't Work (exist):
  * Pattern Matching
  * Conversion to TupleN
