@@ -1,4 +1,3 @@
-
 A macro-based unified Tuple class.
 
 Encodes Tuples as Arrays
@@ -16,8 +15,12 @@ What Doesn't Work (exist):
  * Copy Method
 
 Example:
+
 	import tuplicity.{Tuple=>T, _}
+	
 	val tup = T(1,2,3, "a")
+	
 	println(tup._2) // prints 2
+	
 	val x: String = tup._4
 
