@@ -29,15 +29,20 @@ object TuplicityBuild extends Build {
     id = "tuplicity",
     base = file("."),
     settings = defaultSettings ++ sharedSettings ++  Seq(
-        libraryDependencies += "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
+        libraryDependencies ++= Seq(
+					"org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
+					"com.github.axel22" %% "scalameter" % "0.2" % "test"
+				),
+				testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework"),
+				logBuffered in Test := false
       )
-  ) aggregate(format) dependsOn(format)
+  ) dependsOn(format)
 
   lazy val format: Project = Project(
     id = "tuplicity_format",
     base = file("format"),
     settings = 
-      defaultSettings ++ sharedSettings ++ reflectiveSettings ++ subDirectorySettings 
+      defaultSettings ++ sharedSettings ++ reflectiveSettings ++ subDirectorySettings
    )
 
 }
