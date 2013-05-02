@@ -273,7 +273,10 @@ private[tuplicity] object TupleMacros {
 		val fakeMemberTypes = FormatInfo.fakeMemberTypes(c.universe)
 
 		val termList = exprs.map(_.tree).toList
-		val typeList = termList.map(_.tpe)
+		val typeList = termList.map(_.tpe).map {
+			case primitiveType if primitivesInOrder.exists(primitiveType.erasure =:= _) => primitiveType.erasure
+			case other => other
+		}
 		val tildedList = {
 			val tildeType = typeOf[~[_,_]].typeSymbol
 			val tildeIdent = Ident(tildeType)
