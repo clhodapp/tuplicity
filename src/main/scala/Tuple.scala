@@ -403,7 +403,7 @@ private[tuplicity] object TupleMacros {
 
 }
 
-sealed private[tuplicity] abstract class RuntimeTupleOps(val data: AnyRef, val format: String) extends Product {
+sealed private[tuplicity] abstract class RuntimeTupleOps(val data: AnyRef, val format: String) extends Product with Serializable {
 
 	import internal.TupleHelpers._
 
@@ -447,7 +447,7 @@ sealed private[tuplicity] abstract class RuntimeTupleOps(val data: AnyRef, val f
 
 }
 
-class Tuple[+T](data: AnyRef, format: String) extends RuntimeTupleOps(data, format) with Dynamic {
+class Tuple[+T](data: AnyRef, format: String) extends RuntimeTupleOps(data, format) with Dynamic with Serializable {
 	def selectDynamic(nameExpr: String) = macro TupleMacros.select[T]
 	override def toString = macro TupleMacros.toString[T]
 }
